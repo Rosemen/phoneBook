@@ -6,7 +6,8 @@ import java.util.List;
 import org.junit.Test;
 
 import com.scau.pbook.bean.AddressBean;
-import com.scau.pbook.dao.FileTools;
+import com.scau.pbook.dao.CSVTool;
+import com.scau.pbook.dao.VCFTool;
 
 /**
  * 联系人业务类：联系人可进行的操作
@@ -29,9 +30,9 @@ public class AddressService {
 		if (file == null || filename == null)       //判断是否成功导入文件
 			throw new RuntimeException("导入失败");
 		if (filename.endsWith(".csv"))// 判断文件类型
-			return FileTools.importCsvFile(file);
+			return CSVTool.importCsvFile(file);
 		else if(filename.endsWith(".vcf"))
-			return FileTools.importVcfFile(file);
+			return VCFTool.importVCFFile(file);
 		else return null;
 	}
 
@@ -41,9 +42,9 @@ public class AddressService {
 			throw new RuntimeException("导出失败");
 		String filename = file.getName();
 		if (!filename.isEmpty() && filename.endsWith(".csv"))
-			FileTools.exportCsvFile(list, file);
+			CSVTool.exportCsvFile(list, file);
 		else if (!filename.isEmpty() && filename.endsWith(".vcf"))
-			FileTools.exportVcfFile(list, file);
+			VCFTool.exportVcfFile(list, file);
 
 	}
 

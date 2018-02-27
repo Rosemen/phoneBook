@@ -16,12 +16,12 @@ import com.scau.pbook.bean.AddressBean;
 import com.scau.pbook.tools.AddressBeanTool;
 
 /**
- * 读写文件工具类
+ * 读写CSV格式文件工具类
  * 
  * @author Administrator
  *
  */
-public class FileTools {
+public class CSVTool {
 	/** 读取联系人文件(csv格式),用于导入时调用 */
 	public static List<AddressBean> importCsvFile(File file) {
 		List<AddressBean> list = new ArrayList<>();
@@ -67,16 +67,6 @@ public class FileTools {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	/** 读取联系人文件(vcard格式),用于导入时调用 */
-	public static List<AddressBean> importVcfFile(File file) {
-		List<AddressBean> list = new ArrayList<>();
-		return list;
-	}
-
-	/** 将联系人信息写到文件(vcard格式)中，用于导出时所用 */
-	public static void exportVcfFile(List<AddressBean> list, File file) {
 	}
 
 	@Test
