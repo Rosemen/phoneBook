@@ -24,7 +24,6 @@ import com.scau.pbook.tools.AddressBeanTool;
 public class FileTools {
 	/** 读取联系人文件(csv格式),用于导入时调用 */
 	public static List<AddressBean> importCsvFile(File file) {
-		// if(file == null) throw new RuntimeException();
 		List<AddressBean> list = new ArrayList<>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));

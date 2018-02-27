@@ -20,28 +20,29 @@ public class AddressService {
 	
 	public AddressService(File file) {
 		this.file = file;
+		if(file != null)
 		filename = file.getName();
 	}
 	
 	/** 导入文件 */
-	public List<AddressBean> importFile(File file) {
-		if (file == null || !file.exists())
+	public List<AddressBean> importFile() {
+		if (file == null || filename == null)       //判断是否成功导入文件
 			throw new RuntimeException("导入失败");
-		String filename = file.getName();// 得到导入文件的文件名
-		if (filename.endsWith(".csv"))   // 判断文件类型
+		if (filename.endsWith(".csv"))// 判断文件类型
 			return FileTools.importCsvFile(file);
-		else
+		else if(filename.endsWith(".vcf"))
 			return FileTools.importVcfFile(file);
+		else return null;
 	}
 
 	/** 导出文件 */
-	public void exportFile(List<AddressBean> list, File file) {
+	public void exportFile(List<AddressBean> list,File file) {
 		if (list == null || file == null)
 			throw new RuntimeException("导出失败");
-		String filename = file.getName();// 得到导出的文件名,
-		if (filename.endsWith(".csv"))
+		String filename = file.getName();
+		if (!filename.isEmpty() && filename.endsWith(".csv"))
 			FileTools.exportCsvFile(list, file);
-		else if (filename.endsWith(".vcf"))
+		else if (!filename.isEmpty() && filename.endsWith(".vcf"))
 			FileTools.exportVcfFile(list, file);
 
 	}
@@ -68,6 +69,6 @@ public class AddressService {
 
 	@Test
 	public void test() {
-		System.out.println(importFile(new File("D:/a.csv")));
+		//System.out.println(importFile(new File("D:/a.csv")));
 	}
 }

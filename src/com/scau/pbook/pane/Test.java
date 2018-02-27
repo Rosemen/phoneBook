@@ -52,7 +52,8 @@ public class Test extends Application {
 			bean.setRemarks("e");
 			bean.setBirthday("e");
 			list.add(bean);
-	       // AddressService.exportFile(list, file);
+	        AddressService service = new AddressService(file);
+	       // service.exportFile(list);
 			
 		});
 
